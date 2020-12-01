@@ -1,3 +1,7 @@
-import day01 from "./day01";
+import fs from 'fs';
 
-day01();
+const dayDirs = fs.readdirSync("./src").filter(dir => dir.startsWith('day'));
+
+dayDirs.sort().forEach(dir => {
+  import(`./${dir}`).then(day => day.default());
+})
