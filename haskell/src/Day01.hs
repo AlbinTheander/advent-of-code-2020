@@ -9,6 +9,7 @@ day01 = do
     let nums = parseFile s
     let answer1 = part1 nums
     let answer2 = part2 nums
+    putStrLn "\n===== Day 1 ====="
     putStrLn $ "The product of the first pair is " ++ show answer1
     putStrLn $ "The product of the second triplet is " ++ show answer2
 
