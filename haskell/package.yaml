@@ -26,6 +26,8 @@ library:
   source-dirs: src
   dependencies:
   - parsec
+  - split
+  - regex-tdfa
 
 executables:
   advent-of-code-exe:

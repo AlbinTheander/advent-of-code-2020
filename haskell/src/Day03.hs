@@ -1,7 +1,4 @@
-module Day03 ( day03) where
-
-import Data.List(find)
-import Data.Maybe(fromJust)
+module Day03 (day03) where
 
 day03 :: IO ()
 day03 = do
