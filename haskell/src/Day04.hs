@@ -14,7 +14,7 @@ day04 = do
     let passports = parsePassports $ lines s
     let complete = filter isComplete passports
     let valid = filter isValid complete
-    putStrLn "\n===== Day 5 ====="
+    putStrLn "\n===== Day 4 ====="
     putStrLn $ "There are " ++ show (length complete) ++ " complete passports"
     putStrLn $ "There are " ++ show (length valid) ++ " valid passports"
 
