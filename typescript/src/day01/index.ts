@@ -1,7 +1,6 @@
 import fs from "fs";
 
-export default function day1() {
-  const data = fs.readFileSync("../data/day01.txt", "utf-8");
+export default function day1(data: string) {
   const nums = data.split("\n").map(Number);
   const prod1 = part1(nums);
   const prod2 = part2(nums);

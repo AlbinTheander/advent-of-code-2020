@@ -1,7 +1,6 @@
 import fs from 'fs';
 
-export default function day3() {
-  const data = fs.readFileSync("../data/day03.txt", "utf-8");
+export default function day3(data: string) {
   const map = parseData(data);
   const answer1 = countTrees(map, 3, 1);
   const answer2 = countManySlopes(map);

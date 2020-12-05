@@ -1,7 +1,6 @@
 import fs from "fs";
 
-export default function day5() {
-  const data = fs.readFileSync("../data/day05.txt", "utf-8");
+export default function day5(data: string) {
   const boardingPasses = data.split('\n');
   const seats = boardingPasses.map(getRow)
   const max = Math.max(...seats);

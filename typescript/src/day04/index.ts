@@ -1,8 +1,7 @@
 import fs from 'fs';
 import { count } from '../util/array';
 
-export default function day04() {
-  const data = fs.readFileSync('../data/day04.txt', 'utf-8');
+export default function day04(data: string) {
   const passports = parseData(data);
 
   const completePassports = count(passports, hasAllFields);

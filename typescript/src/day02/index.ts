@@ -8,8 +8,7 @@ interface Entry {
   password: string;
 }
 
-export default function day2() {
-  const data = fs.readFileSync("../data/day02.txt", "utf-8");
+export default function day2(data: string) {
   const entries = parseData(data);
   const answer1 = count(entries, valid1);
   const answer2 = count(entries, valid2);
