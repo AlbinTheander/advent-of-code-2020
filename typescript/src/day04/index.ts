@@ -8,7 +8,7 @@ export default function day04() {
   const completePassports = count(passports, hasAllFields);
   const validPassports = count(passports, isValid);
 
-  console.log('\n===== Day 4 =====');
+  console.log('===== Day 4 =====');
   console.log('There are', completePassports, 'complete passports')
   console.log('There are', validPassports, 'valid passports')
 }
