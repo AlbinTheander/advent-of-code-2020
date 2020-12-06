@@ -30,12 +30,14 @@ library
       Day03
       Day04
       Day05
+      Day06
   other-modules:
       Paths_advent_of_code
   hs-source-dirs:
       src
   build-depends:
       base >=4.7 && <5
+    , containers
     , parsec
     , regex-tdfa
     , split

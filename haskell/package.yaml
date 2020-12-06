@@ -25,6 +25,7 @@ dependencies:
 library:
   source-dirs: src
   dependencies:
+  - containers
   - parsec
   - split
   - regex-tdfa
