@@ -4,6 +4,7 @@
                             [day03 :refer [day03]]
                             [day04 :refer [day04]]
                             [day05 :refer [day05]]
+                            [day06 :refer [day06]]
                             ))
   (:gen-class))
 
@@ -13,4 +14,5 @@
   (day03)
   (day04)
   (day05)
+  (day06)
   )
