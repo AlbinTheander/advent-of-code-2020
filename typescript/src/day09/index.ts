@@ -1,24 +1,23 @@
 export default function day09(data: string) {
   const ns = data.split('\n').map(Number);
 
-  let found = -1;
-  let preamble = 25;
-  let i = preamble;
-  while (found < 0) {
-    const range = ns.slice(i-preamble, i);
-    console.log(ns[i], range);
-    const isThere = findSum(ns[i], range);
-    if (!isThere) found = i;
-    i++
-  }
+  const answer1 = part1(ns, 25);  
+  const answer2 = part2(answer1, ns);
 
-  console.log(ns[found]);
-  const list = findList(ns[found], ns);
-
-  console.log(list);
-  console.log(Math.min(...list) + Math.max(...list));
+  console.log('===== Day 9 =====')
+  console.log('The first wekness found is', answer1);
+  console.log('The sum of min and max of the secret sequence is', answer2);
 }
 
+function part1(ns: number[], preamble: number): number {
+  let i = preamble;
+  while (true) {
+    const range = ns.slice(i-preamble, i);
+    const hasSum = findSum(ns[i], range);
+    if (!hasSum) return ns[i];
+    i++;
+  }
+}
 
 function findSum(n: number, ns: number[]): boolean {
   for (let i = 0; i < ns.length; i++) {
@@ -29,7 +28,12 @@ function findSum(n: number, ns: number[]): boolean {
   return false;
 }
 
-function findList(n: number, ns: number[]): number[] {
+function part2(target: number, ns: number[]): number {
+  const range = findContiguousSum(target, ns);
+  return Math.min(...range) + Math.max(...range);
+}
+
+function findContiguousSum(n: number, ns: number[]): number[] {
   for(let i = 0; i < ns.length; i++) {
     let sum = 0;
     let j = i;
@@ -37,7 +41,6 @@ function findList(n: number, ns: number[]): number[] {
       sum += ns[j];
       j++;
     }
-    console.log('Tried', ns[i], '->', ns[j], ': ', sum);
     if (sum === n) return ns.slice(i, j);
   }
   return [];
