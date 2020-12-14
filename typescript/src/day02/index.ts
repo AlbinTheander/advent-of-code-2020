@@ -1,4 +1,3 @@
-import fs from 'fs';
 import { count } from '../util/array';
 
 interface Entry {

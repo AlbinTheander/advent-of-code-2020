@@ -1,4 +1,3 @@
-
 interface BagRule {
   color: string;
   containsAmount: number;

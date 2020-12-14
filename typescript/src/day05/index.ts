@@ -1,5 +1,3 @@
-import fs from "fs";
-
 export default function day5(data: string) {
   const boardingPasses = data.split('\n');
   const seats = boardingPasses.map(getRow)

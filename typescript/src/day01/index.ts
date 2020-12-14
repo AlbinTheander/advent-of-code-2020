@@ -1,5 +1,3 @@
-import fs from "fs";
-
 export default function day1(data: string) {
   const nums = data.split("\n").map(Number);
   const prod1 = part1(nums);
