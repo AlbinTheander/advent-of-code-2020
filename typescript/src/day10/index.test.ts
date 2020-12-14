@@ -1,12 +1,12 @@
-import { countWays } from ".";
+import { waysToArrangeItems } from ".";
 
 test('ways', () => {
-  expect(countWays(0, 1)).toBe(1);
-  expect(countWays(0, 2)).toBe(2);
-  expect(countWays(0, 3)).toBe(4);
-  expect(countWays(0, 4)).toBe(7);
-  expect(countWays(0, 5)).toBe(13);
-  expect(countWays(0, 6)).toBe(24);
-  expect(countWays(0, 7)).toBe(44);
-  expect(countWays(0, 8)).toBe(81);
+  expect(waysToArrangeItems(1)).toBe(1);
+  expect(waysToArrangeItems(2)).toBe(1);
+  expect(waysToArrangeItems(3)).toBe(2);
+  expect(waysToArrangeItems(4)).toBe(4);
+  expect(waysToArrangeItems(5)).toBe(7);
+  expect(waysToArrangeItems(6)).toBe(13);
+  expect(waysToArrangeItems(7)).toBe(24);
+  expect(waysToArrangeItems(8)).toBe(44);
 })
