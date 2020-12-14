@@ -22,7 +22,7 @@ export default function day08(data: string) {
   const answer1 = part1(program);
   const answer2 = part2(program);
 
-  console.log('===== Day08 =====');
+  console.log('===== Day 8 =====');
   console.log('When the program starts looping, the accumulator is', answer1);
   console.log('After fixing the program, the end result is', answer2);
 }

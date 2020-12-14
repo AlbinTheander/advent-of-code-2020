@@ -1,9 +1,9 @@
 export default function day14(data: string) {
   const program = parseData(data);
   const mem = run2(program);
-  console.log(mem);
   const sum = [...mem.values()].reduce((a, b) => a + b, 0n);
-  console.log(sum);}
+  console.log(sum);
+}
 
 function parseData(data: string) {
   return data.split('\n').map(line => {
@@ -44,7 +44,6 @@ function run2(program) {
 }
 
 function write(mem, adr, v, mask) {
-  console.log('writing', adr, v, mask);
   const adrS = adr.toString(2).padStart(36, '0').split('');
   
   const doIt = (m) => {
@@ -55,7 +54,6 @@ function write(mem, adr, v, mask) {
     }
     const a = parseInt(adrS.map((b, i) => m[i] === '.' ? b : m[i]).join(''), 2);
     mem.set(a, v);
-    console.log('demasked', m);
   }
 
   doIt(mask.replace(/0/g, '.'));

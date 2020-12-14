@@ -13,7 +13,7 @@ export default function day13(data: string) {
     if (bus) break;
     wait++;
   }
-  console.log(buses);
+  // console.log(buses);
   console.log(bus, wait, bus * wait);
 }
 
@@ -26,7 +26,6 @@ export function part2(busLine: string) {
   let n = buses[0].offset;
   let mul = buses[0].id;
   for(let bus of buses.slice(1)) {
-    console.log('Doing', bus, n, mul);
     while (n % bus.id !== (bus.id - bus.offset) ) n += mul;
     mul *= bus.id;
   }

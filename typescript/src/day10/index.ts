@@ -31,7 +31,6 @@ function differenceCounts(ns: number[]): number[] {
 
 function part2(joltages: number[]): number {
   const groups = groupContiguous(joltages);
-  console.log(groups);
   const arrangements = groups.map(g => g.length).map(waysToArrangeItems);
   return arrangements.reduce((a, b) => a * b, 1);
 }
