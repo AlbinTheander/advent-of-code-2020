@@ -1,4 +1,4 @@
-import { validators } from ".";
+import { validators } from "../day04";
 
 test('Birth year', () => {
   const byr = validators.byr;

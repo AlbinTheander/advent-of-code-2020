@@ -1,4 +1,4 @@
-import { count } from '../util/array';
+import { count } from './util/array';
 
 interface Entry {
   n1: number;

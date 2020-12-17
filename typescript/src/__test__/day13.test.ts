@@ -1,4 +1,4 @@
-import { part2 } from "."
+import { part2 } from "../day13"
 
 test('works', () => {
   expect(part2('17,x,13,19')).toEqual(3417);

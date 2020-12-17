@@ -1,4 +1,4 @@
-import { count } from "../util/array";
+import { count } from "./util/array";
 
 export default function day11(data: string) {
   let room = data.split('\n').map(line => line.split(''));

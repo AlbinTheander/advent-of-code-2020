@@ -1,4 +1,4 @@
-import { waysToArrangeItems } from ".";
+import { waysToArrangeItems } from "../day10";
 
 test('ways', () => {
   expect(waysToArrangeItems(1)).toBe(1);

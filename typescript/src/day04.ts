@@ -1,4 +1,4 @@
-import { count } from '../util/array';
+import { count } from './util/array';
 
 export default function day04(data: string) {
   const passports = parseData(data);

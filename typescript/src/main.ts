@@ -1,18 +1,21 @@
-import fs from 'fs';
+import fs from "fs";
 
-const dayDirs = fs.readdirSync("./src").filter(dir => dir.startsWith('day'));
+const solutions = fs
+  .readdirSync("./src")
+  .filter((fileName) => fileName.startsWith("day"))
+  .map((fileName) => fileName.split('.')[0])
 
 async function runDay(day: string, input: string = `../data/${day}.txt`) {
   const module = await import(`./${day}`);
-  const data = fs.readFileSync(input, 'utf-8')
+  const data = fs.readFileSync(input, "utf-8");
   module.default(data);
   console.log();
 }
 
 function runAll() {
-  dayDirs.sort().forEach(async dir => {
+  solutions.sort().forEach(async (dir) => {
     await runDay(dir);
-  })
+  });
 }
 
 function main() {
