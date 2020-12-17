@@ -1,24 +1,43 @@
 import { count } from "./util/array";
 
-export default function day11(data: string) {
-  let room = data.split('\n').map(line => line.split(''));
+enum Spot {
+  empty = '.',
+  chair = 'L',
+  person = '#'
+};
+type Room = Spot[][];
+type Looker = (room: Room, x: number, y: number, dx: number, dy: number) => Spot;
 
+export default function day11(data: string) {
+  let room = data.split('\n').map(line => line.split('')) as Room;
+
+  const answer1 = evolveFromNeighbors(room);
+  const answer2 = evolveFromLineOfSight(room);
+
+  console.log('===== Day 11 =====');
+  console.log('When the near sighted room stabilizes, there are', answer1, 'people.');
+  console.log('When the far sighted room stabilizes, there are', answer2, 'people.');
+}
+  
+
+function evolveFromNeighbors(room: Room): number {
   let next = nextGeneration(room, look1, 4);
   while (room !== next) {
     room = next;
     next = nextGeneration(room, look1, 4);
   }
 
-  console.log(countOccupied(next));
+  return countOccupied(room);
+}
 
-  next = nextGeneration(room, lookFar, 5);
+function evolveFromLineOfSight(room: Room): number {
+  let next = nextGeneration(room, lookFar, 5);
   while (room !== next) {
     room = next;
     next = nextGeneration(room, lookFar, 5);
   }
 
-  console.log(countOccupied(next));
-
+  return countOccupied(next);
 }
 
 function printRoom(room) {
@@ -26,16 +45,14 @@ function printRoom(room) {
   console.log(room.map(line => line.join('')).join('\n'));
 }
 
-type Looker = (room: string[][], x: number, y: number, dx: number, dy: number) => string
-
-function look1(room, x, y, dx, dy) {
+function look1(room: Room, x: number, y: number, dx: number, dy: number): Spot {
   const x1 = x + dx;
   const y1 = y + dy;
-  if (y1 < 0 || y1 >= room.length || x1 < 0 || x1 >= room[0].length) return '.';
+  if (y1 < 0 || y1 >= room.length || x1 < 0 || x1 >= room[0].length) return Spot.empty;
   return room[y1][x1];
 }
 
-function lookFar(room, x, y, dx, dy) {
+function lookFar(room: Room, x: number, y: number, dx: number, dy: number): Spot {
   const valid = (x, y) => y >= 0 && y < room.length && x >= 0 && x < room[0].length;
 
   let x1 = x + dx;
@@ -46,10 +63,10 @@ function lookFar(room, x, y, dx, dy) {
     x1 += dx;
     y1 += dy;
   }
-  return '.';
+  return Spot.empty;
 }
 
-function nextGeneration(room: string[][], looker: Looker, limit: number): string[][] {
+function nextGeneration(room: Room, looker: Looker, limit: number): Room {
   const newRoom = Array(room.length).fill('').map(() => []);
   let changed = false;
 
@@ -60,14 +77,14 @@ function nextGeneration(room: string[][], looker: Looker, limit: number): string
         [-1,  0],          [1,  0],
         [ -1, 1], [0,  1], [1,  1]]
         .map(([dx, dy]) => looker(room, x, y, dx, dy))
-        .filter(seat => seat === '#').length;
+        .filter(seat => seat === Spot.person).length;
 
       const current = room[y][x];
-      if (current === 'L' && occupied === 0) {
-        newRoom[y][x] = '#';
+      if (current === Spot.chair && occupied === 0) {
+        newRoom[y][x] = Spot.person;
         changed = true;
-      } else if (current === '#' && occupied >= limit) {
-        newRoom[y][x] = 'L';
+      } else if (current === Spot.person && occupied >= limit) {
+        newRoom[y][x] = Spot.chair;
         changed = true;
       } else {
         newRoom[y][x] = current;
@@ -77,6 +94,6 @@ function nextGeneration(room: string[][], looker: Looker, limit: number): string
     return changed ? newRoom : room;
 }
 
-function countOccupied(room: string[][]): number {
-  return count(room.toString().split(''), ch => ch === '#');
+function countOccupied(room: Room): number {
+  return count(room.toString().split(''), ch => ch === Spot.person);
 }
