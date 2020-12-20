@@ -1,4 +1,4 @@
-import BetterSet from "./util/betterSet";
+import BetterSet from "./util/BetterSet";
 
 type Point = number[]; // Any number of dimensions
 type Room = BetterSet<Point>
