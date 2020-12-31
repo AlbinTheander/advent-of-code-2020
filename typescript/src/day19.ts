@@ -1,13 +1,20 @@
+import { count } from "./util/array";
+
+type RuleId = string;
+type RuleSequence = RuleId[];
+type Rule = { type: 'char', ch: string } | { type: 'composite', seqs: RuleSequence[] }
 export default function day19(data: string) {
   const { rules, messages } = parseData(data);
 
-  const matching = messages.filter(m => matchRules2(rules, m));
-  console.log(matching);
-  console.log(matching.length);
+  const answer1 = part1(rules, messages);
+  const answer2 = part2(rules, messages);
+
+  console.log('===== Day 19 =====');
+  console.log('The number of messages matching the rules is', answer1);
+  console.log('The number of messages matching the corrected rules is', answer2);
 }
 
-
-export function parseData(data: string) {
+export function parseData(data: string): { rules: Rule[], messages: string[] } {
   const rules = [];
   let [ruleData, messageData] = data.split('\n\n');
   ruleData.split('\n').forEach(line => {
@@ -24,15 +31,25 @@ export function parseData(data: string) {
   return { rules, messages };
 }
 
-function matchRule(rules, ruleId, s) {
-  return applyRule(rules, ruleId, s) === '';
+function part1(rules: Rule[], messages: string[]): number {
+  return count(messages, m => applyRule(rules, '0', m) === '');
 }
 
-/*
-8: 42 | 42 8
-11: 42 31 | 42 11 31
+function part2(rules: Rule[], messages: string[]): number {
+  return count(messages, m => matchesCorrectedRule0(rules, m));
+}
+
+/**
+ * After correcting rule 8 and 11, the interesting rules look like:
+ * 
+ * 0: 8 11   - First rule 8 and then rule 11
+ * 8: 42 | 42 8  - One or more matches of rule 42
+ * 11: 42 31 | 42 11 31  - One or more matches of rule 42 followed by the same amount of rule 31
+ * 
+ * So matching rule 0 means to march rule 42 a number of times, followed by matching rule 31 a
+ * fewer number number of times.
  */
-function matchRules2(rules, s) {
+function matchesCorrectedRule0(rules: Rule[], s: string): boolean {
   let fortyTwos = 1;
   let s1 = applyRule(rules, '42', s);
   while (s1) {
@@ -47,7 +64,11 @@ function matchRules2(rules, s) {
   return false;
 }
 
-export function applyRule(rules, ruleId, s) {
+/**
+ * applies the rule with the given ruleId to the string s and returns the remainder of the
+ * string or false if the rule could not be applied
+ */
+export function applyRule(rules: Rule[], ruleId: RuleId, s: string): string | false {
   const rule = rules[ruleId];
   if (rule.type === 'char') {
     if (s[0] === rule.ch) return s.slice(1);
@@ -61,8 +82,8 @@ export function applyRule(rules, ruleId, s) {
   return false;
 }
 
-function applySeq(rules, seq, s) {
-  let s1 = s;
+function applySeq(rules: Rule[], seq: RuleSequence, s: string): string | false {
+  let s1: string | false = s;
   for(const rid of seq) {
     s1 = applyRule(rules, rid, s1);
     if (s1 === false) return false;
