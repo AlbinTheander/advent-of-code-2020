@@ -29,6 +29,7 @@ library:
   - parsec
   - split
   - regex-tdfa
+  - vector
 
 executables:
   advent-of-code-exe:

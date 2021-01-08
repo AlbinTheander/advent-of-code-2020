@@ -32,6 +32,7 @@ library
       Day05
       Day06
       Day07
+      Day08
       Day18
   other-modules:
       Paths_advent_of_code
@@ -43,6 +44,7 @@ library
     , parsec
     , regex-tdfa
     , split
+    , vector
   default-language: Haskell2010
 
 executable advent-of-code-exe
