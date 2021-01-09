@@ -6,7 +6,7 @@ day03 = do
     let terrain = parseData s
     let answer1 = countTrees terrain (3, 1)
     let answer2 = countSeveralSlopes terrain [(1, 1), (3, 1), (5, 1), (7, 1), (1, 2)]
-    putStrLn "\n===== Day 1 ====="
+    putStrLn "\n===== Day 3 ====="
     putStrLn $ "The product of the first pair is " ++ show answer1
     putStrLn $ "The product of the second triplet is " ++ show answer2
 
