@@ -39,6 +39,7 @@ library
       Day12
       Day13
       Day18
+      MatrixExponentiation
       Vector2
   other-modules:
       Paths_advent_of_code
