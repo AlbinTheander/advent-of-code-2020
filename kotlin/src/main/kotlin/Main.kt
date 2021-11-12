@@ -1,7 +1,7 @@
-fun main(args: Array<String>) {
-    println("Hello World!")
+import days.Day1
+import days.Day2
 
-    // Try adding program arguments via Run/Debug configuration.
-    // Learn more about running applications: https://www.jetbrains.com/help/idea/running-applications.html.
-    println("Program arguments: ${args.joinToString()}")
+fun main(args: Array<String>) {
+    Day1().solve()
+    Day2().solve()
 }
