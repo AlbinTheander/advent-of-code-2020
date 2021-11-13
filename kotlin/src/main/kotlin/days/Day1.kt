@@ -1,19 +1,19 @@
 package days
 
+import common.Day
 import java.io.File
 
-class Day1 {
+class Day1 : Day(){
 
-    fun solve() {
-        val data = getData()
+    override fun solve() {
+        val data = getFileData("day01.txt").map { it.toInt() }
         val result1 = part1(data)
         val result2 = part2(data)
+
         println("===== Day 1  =====")
         println("The double product is $result1")
         println("The triple product is $result2")
     }
-
-    private fun getData() = File("../data/day01.txt").readLines().map { it.toInt() }
 
     private fun part1(data: List<Int>): Int {
         for (i in data.indices)

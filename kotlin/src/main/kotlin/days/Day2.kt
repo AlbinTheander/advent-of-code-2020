@@ -1,10 +1,11 @@
 package days
 
+import common.Day
 import java.io.File
 
-class Day2 {
+class Day2 : Day() {
 
-    fun solve() {
+    override fun solve() {
         val data = getData()
         val result1 = data.count(this::valid1)
         val result2 = data.count(this::valid2)
@@ -14,8 +15,7 @@ class Day2 {
     }
 
     private fun getData(): List<Entry> {
-        val lines = File("../data/day02.txt")
-            .readLines()
+        val lines = getFileData("day02.txt")
             .map { it.split(Regex("-|:? ")) }
             .map { Entry(it[0].toInt(), it[1].toInt(), it[2][0], it[3])}
 
