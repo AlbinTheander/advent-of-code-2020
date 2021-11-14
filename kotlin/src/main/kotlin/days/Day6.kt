@@ -10,7 +10,6 @@ class Day6: Day() {
         println("\n===== Day 6  =====")
         println("The sum of questions anyone answered yes to is $anyAnswered")
         println("The sum of questions everyone answered yes to is $allAnswered")
-
     }
 
     fun part1(groups: List<Group>): Int {
